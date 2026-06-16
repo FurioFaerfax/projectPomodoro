@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d3tqub53lnvdm"]
+[gd_scene format=3 uid="uid://d3tqub53lnvdm"]
 
 [ext_resource type="Script" uid="uid://c6dnlmoas2ke0" path="res://scripts/pomodoro/projectPomodoro.gd" id="1_twpsu"]
 [ext_resource type="Texture2D" uid="uid://cdby7233hxjii" path="res://assets/menu.svg" id="2_5sfjl"]
@@ -14,47 +14,49 @@
 [ext_resource type="Script" uid="uid://b884q8rh26ryo" path="res://scripts/todo/todo_window.gd" id="9_3hfy5"]
 [ext_resource type="Script" uid="uid://dpo2qw4jmn7hq" path="res://scripts/pomodoro/timer.gd" id="10_vgks2"]
 [ext_resource type="PackedScene" uid="uid://djtc4uphb7mhr" path="res://scenes/todo.tscn" id="11_vgks2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ccljq"]
+[ext_resource type="Script" uid="uid://bo7f2ywmaea71" path="res://scripts/audio/audio_visuals.gd" id="12_jrhyn"]
+[ext_resource type="Script" uid="uid://dde5l0gpbwx27" path="res://scripts/audio/audio_controls.gd" id="13_log26"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ui5n"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ccljq"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3p2p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya6yc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34frw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mflgo"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34frw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya6yc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_twpsu"]
 font_size = 42
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j287u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5cgh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_log26"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5cgh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sfjl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt4lb"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j287u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgks2"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hfy5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt4lb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jrhyn"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sfjl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xsp7o"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pvxh"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jrhyn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dylgi"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hfy5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3xxt"]
 
-[node name="projectPomodoro" type="Control" groups=["app"]]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dylgi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pvxh"]
+
+[node name="projectPomodoro" type="Control" unique_id=1235237789 groups=["app"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twpsu")
 
-[node name="tabs" type="TabContainer" parent="."]
+[node name="tabs" type="TabContainer" parent="." unique_id=1629774704]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -71,17 +73,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_ccljq")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8ui5n")
-current_tab = 0
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_ccljq")
+current_tab = 2
 
-[node name="pomodoro" type="TabBar" parent="tabs"]
+[node name="pomodoro" type="TabBar" parent="tabs" unique_id=306337723]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_f3p2p")
 metadata/_tab_index = 0
 
-[node name="pomodoro_container" type="Control" parent="tabs/pomodoro"]
+[node name="pomodoro_container" type="Control" parent="tabs/pomodoro" unique_id=1075133319]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -90,7 +93,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="pomodoro_layout" type="VBoxContainer" parent="tabs/pomodoro/pomodoro_container"]
+[node name="pomodoro_layout" type="VBoxContainer" parent="tabs/pomodoro/pomodoro_container" unique_id=1054769096]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.006
@@ -103,31 +106,31 @@ offset_bottom = -0.124023
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="menu_container" type="Control" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout"]
+[node name="menu_container" type="Control" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout" unique_id=968110437]
 custom_minimum_size = Vector2(0, 57.34)
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("2_l5cgh")
 
-[node name="menu" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container"]
+[node name="menu" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" unique_id=997916478]
 unique_name_in_owner = true
 modulate = Color(0.321569, 0.352941, 0.380392, 1)
-layout_mode = 2
+layout_mode = 0
 anchor_right = 0.107
 anchor_bottom = 0.924
 offset_right = 0.141994
 offset_bottom = 0.0178375
 size_flags_horizontal = 0
-theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ya6yc")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_mflgo")
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_34frw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mflgo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ya6yc")
 icon = ExtResource("2_5sfjl")
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="menu_bg" type="ColorRect" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu"]
+[node name="menu_bg" type="ColorRect" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu" unique_id=1487582739]
 unique_name_in_owner = true
 visible = false
 top_level = true
@@ -140,7 +143,7 @@ offset_bottom = 303.665
 color = Color(0.233925, 0.233925, 0.233925, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="menu_entries" type="VBoxContainer" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg"]
+[node name="menu_entries" type="VBoxContainer" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg" unique_id=334780340]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,37 +155,37 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="reload_sound" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="reload_sound" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1624613111]
 layout_mode = 2
 text = "Reload sounds"
 
-[node name="set_time" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="set_time" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1214025194]
 layout_mode = 2
 text = "Edit time"
 
-[node name="autoplay_button" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="autoplay_button" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1135229620]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "autoplay"
 
-[node name="sounds" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="sounds" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1775745359]
 layout_mode = 2
 button_pressed = true
 text = "sounds
 "
 alignment = 2
 
-[node name="undock_todo" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="undock_todo" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=94090027]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "undock todo"
 
-[node name="about" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries"]
+[node name="about" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=615000818]
 layout_mode = 2
 text = "about"
 
-[node name="state_label" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container"]
+[node name="state_label" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" unique_id=767533895]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -199,13 +202,13 @@ grow_vertical = 2
 size_flags_horizontal = 6
 text = "state"
 
-[node name="time_visuals" type="Control" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout"]
+[node name="time_visuals" type="Control" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout" unique_id=1874619885]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_xsp7o")
 
-[node name="time_label" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/time_visuals"]
+[node name="time_label" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/time_visuals" unique_id=181670135]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -221,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_twpsu")
 
-[node name="ProgressBar" type="TextureProgressBar" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/time_visuals"]
+[node name="ProgressBar" type="TextureProgressBar" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/time_visuals" unique_id=203911077]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -241,58 +244,58 @@ texture_progress = ExtResource("2_j287u")
 tint_under = Color(1, 1, 1, 0.203922)
 tint_progress = Color(0.317647, 1, 0.317647, 1)
 
-[node name="timer_controls" type="HBoxContainer" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout"]
+[node name="timer_controls" type="HBoxContainer" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout" unique_id=1889343758]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("5_l5cgh")
 
-[node name="Start" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls"]
+[node name="Start" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" unique_id=1078312355]
 unique_name_in_owner = true
 modulate = Color(0.323, 0.3515, 0.38, 1)
 layout_mode = 2
-theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_icons/icon = ExtResource("3_sqa0i")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_j287u")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_log26")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_l5cgh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_log26")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j287u")
 
-[node name="Pause" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls"]
+[node name="Pause" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" unique_id=45774782]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.321569, 0.352941, 0.380392, 1)
 layout_mode = 2
-theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
 theme_override_icons/icon = ExtResource("4_j287u")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_5sfjl")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_gt4lb")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vgks2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt4lb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5sfjl")
 
-[node name="Stop" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls"]
+[node name="Stop" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" unique_id=1511042675]
 unique_name_in_owner = true
 modulate = Color(0.321569, 0.352941, 0.380392, 1)
 layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
 theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
-theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
 theme_override_icons/icon = ExtResource("5_5sfjl")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3hfy5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_jrhyn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xsp7o")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jrhyn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3hfy5")
 
-[node name="Skip" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls"]
+[node name="Skip" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" unique_id=498167554]
 unique_name_in_owner = true
 modulate = Color(0.321569, 0.352941, 0.380392, 1)
 layout_mode = 2
-theme_override_colors/icon_hover_color = Color(0.94, 0.94, 0.94, 0.721569)
 theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.94, 0.94, 0.94, 0.721569)
 theme_override_icons/icon = ExtResource("6_3hfy5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7pvxh")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_dylgi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y3xxt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dylgi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7pvxh")
 
-[node name="round_label" type="Label" parent="tabs/pomodoro/pomodoro_container"]
+[node name="round_label" type="Label" parent="tabs/pomodoro/pomodoro_container" unique_id=581067065]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
@@ -305,13 +308,13 @@ offset_bottom = -17.0
 grow_vertical = 0
 text = "rounds"
 
-[node name="todo" type="TabBar" parent="tabs"]
+[node name="todo" type="TabBar" parent="tabs" unique_id=1635906602]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="todo_container" parent="tabs/todo" instance=ExtResource("11_vgks2")]
+[node name="todo_container" parent="tabs/todo" unique_id=1786805228 instance=ExtResource("11_vgks2")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 1
@@ -322,93 +325,249 @@ offset_top = -15.0
 offset_bottom = 16.0
 metadata/_edit_use_anchors_ = true
 
-[node name="todo_containerold" type="Control" parent="tabs/todo"]
+[node name="todo_containerold" type="Control" parent="tabs/todo" unique_id=1863485626]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="tabs/todo/todo_containerold"]
+[node name="Label" type="Label" parent="tabs/todo/todo_containerold" unique_id=860137400]
 layout_mode = 0
 offset_right = 98.0
 offset_bottom = 23.0
 text = "Test"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="audioplayer" type="TabBar" parent="tabs" unique_id=1744256551]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_f3p2p")
+metadata/_tab_index = 2
+
+[node name="audio_container" type="Control" parent="tabs/audioplayer" unique_id=1099423399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="audio_layout" type="VBoxContainer" parent="tabs/audioplayer/audio_container" unique_id=781009355]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 0.006
+anchor_right = 0.996
+anchor_bottom = 0.996
+offset_top = 0.186
+offset_right = -3.05176e-05
+offset_bottom = -0.124023
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu_container" type="Control" parent="tabs/audioplayer/audio_container/audio_layout" unique_id=1683432281]
+custom_minimum_size = Vector2(0, 57.34)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="state_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/menu_container" unique_id=1081358235]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+text = "state"
+
+[node name="audio_visuals" type="Control" parent="tabs/audioplayer/audio_container/audio_layout" unique_id=883219602]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("12_jrhyn")
+
+[node name="time_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/audio_visuals" unique_id=302481136]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_twpsu")
+
+[node name="audio_progress_bar" type="TextureProgressBar" parent="tabs/audioplayer/audio_container/audio_layout/audio_visuals" unique_id=140693013]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -170.5
+offset_right = 170.5
+offset_bottom = 170.5
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 7.7
+value = 7.7
+tint_under = Color(1, 1, 1, 0.203922)
+tint_progress = Color(0.317647, 1, 0.317647, 1)
+
+[node name="audio_controls" type="HBoxContainer" parent="tabs/audioplayer/audio_container/audio_layout" unique_id=698836152]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("13_log26")
+
+[node name="audioStart" type="Button" parent="tabs/audioplayer/audio_container/audio_layout/audio_controls" unique_id=803698750]
+unique_name_in_owner = true
+modulate = Color(0.323, 0.3515, 0.38, 1)
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
+theme_override_icons/icon = ExtResource("3_sqa0i")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l5cgh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_log26")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j287u")
+
+[node name="audioPause" type="Button" parent="tabs/audioplayer/audio_container/audio_layout/audio_controls" unique_id=1264389130]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.321569, 0.352941, 0.380392, 1)
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
+theme_override_icons/icon = ExtResource("4_j287u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vgks2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gt4lb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5sfjl")
+
+[node name="audioStop" type="Button" parent="tabs/audioplayer/audio_container/audio_layout/audio_controls" unique_id=1577341602]
+unique_name_in_owner = true
+modulate = Color(0.321569, 0.352941, 0.380392, 1)
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.941176, 0.941176, 0.941176, 0.721569)
+theme_override_icons/icon = ExtResource("5_5sfjl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xsp7o")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jrhyn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3hfy5")
+
+[node name="audioSkip" type="Button" parent="tabs/audioplayer/audio_container/audio_layout/audio_controls" unique_id=322173401]
+unique_name_in_owner = true
+modulate = Color(0.321569, 0.352941, 0.380392, 1)
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.811765, 0.713726, 0.713726, 0.721569)
+theme_override_colors/icon_hover_color = Color(0.94, 0.94, 0.94, 0.721569)
+theme_override_icons/icon = ExtResource("6_3hfy5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y3xxt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dylgi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7pvxh")
+
+[node name="round_label" type="Label" parent="tabs/audioplayer/audio_container" unique_id=1317039097]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -40.0
+offset_right = 74.0
+offset_bottom = -17.0
+grow_vertical = 0
+text = "rounds"
+
+[node name="audioTimer" type="Timer" parent="tabs/audioplayer/audio_container" unique_id=938168075]
+unique_name_in_owner = true
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="tabs/audioplayer/audio_container" unique_id=621253389]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="." unique_id=509296190]
 unique_name_in_owner = true
 one_shot = true
 script = ExtResource("10_vgks2")
 
-[node name="audio" type="AudioStreamPlayer" parent="."]
+[node name="audio" type="AudioStreamPlayer" parent="." unique_id=84357405]
 unique_name_in_owner = true
 script = ExtResource("4_sqa0i")
 
-[node name="time_settings" type="AcceptDialog" parent="."]
+[node name="time_settings" type="AcceptDialog" parent="." unique_id=72310790]
 unique_name_in_owner = true
 title = "Set the duration"
 initial_position = 2
 size = Vector2i(232, 158)
 ok_button_text = "confirm"
 
-[node name="container" type="VBoxContainer" parent="time_settings"]
+[node name="container" type="VBoxContainer" parent="time_settings" unique_id=681167843]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 224.0
 offset_bottom = 109.0
 
-[node name="working_time" type="HBoxContainer" parent="time_settings/container"]
+[node name="working_time" type="HBoxContainer" parent="time_settings/container" unique_id=1997009611]
 layout_mode = 2
 
-[node name="name" type="Label" parent="time_settings/container/working_time"]
+[node name="name" type="Label" parent="time_settings/container/working_time" unique_id=175872481]
 layout_mode = 2
 text = " woking time       "
 
-[node name="value" type="LineEdit" parent="time_settings/container/working_time"]
+[node name="value" type="LineEdit" parent="time_settings/container/working_time" unique_id=940844167]
 layout_mode = 2
 text = "25"
 placeholder_text = "25"
 
-[node name="mini_break" type="HBoxContainer" parent="time_settings/container"]
+[node name="mini_break" type="HBoxContainer" parent="time_settings/container" unique_id=683209165]
 layout_mode = 2
 
-[node name="name" type="Label" parent="time_settings/container/mini_break"]
+[node name="name" type="Label" parent="time_settings/container/mini_break" unique_id=2031895588]
 layout_mode = 2
 text = "mini break time "
 
-[node name="value" type="LineEdit" parent="time_settings/container/mini_break"]
+[node name="value" type="LineEdit" parent="time_settings/container/mini_break" unique_id=939672981]
 layout_mode = 2
 text = "5"
 placeholder_text = "5"
 
-[node name="main_break" type="HBoxContainer" parent="time_settings/container"]
+[node name="main_break" type="HBoxContainer" parent="time_settings/container" unique_id=1719470876]
 layout_mode = 2
 
-[node name="name" type="Label" parent="time_settings/container/main_break"]
+[node name="name" type="Label" parent="time_settings/container/main_break" unique_id=1787422155]
 layout_mode = 2
 text = "main break time"
 
-[node name="value" type="LineEdit" parent="time_settings/container/main_break"]
+[node name="value" type="LineEdit" parent="time_settings/container/main_break" unique_id=839676701]
 layout_mode = 2
 text = "20"
 placeholder_text = "20"
 
-[node name="about_dialog" type="AcceptDialog" parent="."]
+[node name="about_dialog" type="AcceptDialog" parent="." unique_id=953383299]
 unique_name_in_owner = true
 title = "About"
 initial_position = 2
 size = Vector2i(400, 200)
 ok_button_text = "close"
 
-[node name="about_label" type="RichTextLabel" parent="about_dialog"]
+[node name="about_label" type="RichTextLabel" parent="about_dialog" unique_id=1873613379]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 151.0
 bbcode_enabled = true
 
-[node name="todo_window" type="Window" parent="."]
+[node name="todo_window" type="Window" parent="." unique_id=549520952]
 unique_name_in_owner = true
 size = Vector2i(300, 500)
 visible = false
@@ -436,6 +595,10 @@ script = ExtResource("9_3hfy5")
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls/Stop" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" method="_on_stop_pressed"]
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls/Skip" to="." method="_on_skip_pressed"]
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls/Skip" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls" method="_on_skip_pressed"]
+[connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioStart" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_start_pressed"]
+[connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioPause" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_pause_pressed"]
+[connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioStop" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_stop_pressed"]
+[connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioSkip" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_skip_pressed"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
 [connection signal="canceled" from="time_settings" to="." method="_on_accept_dialog_canceled"]
 [connection signal="confirmed" from="time_settings" to="." method="_on_accept_dialog_confirmed"]
