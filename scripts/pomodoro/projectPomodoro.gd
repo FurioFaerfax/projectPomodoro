@@ -36,6 +36,9 @@ var initial_todo_pos :Vector2i = Vector2()
 		Settings.web_export = val
 
 func _ready() -> void:
+	await RenderingServer.frame_post_draw
+	DisplayServer.window_set_title("Project Pomodoro", get_window().get_window_id())
+	
 	if Settings.web_export:
 		undock_todo.disabled = true
 		reload_sound.disabled = true

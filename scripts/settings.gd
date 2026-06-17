@@ -34,10 +34,12 @@ func _ready() -> void:
 	_load_key_map()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
-	if event.is_action_pressed("f1"):
-		_open_user_directory()
+	if !Settings.web_export:
+		if event.is_action_pressed("ui_cancel"):
+			#get_tree().quit()
+			pass
+		if event.is_action_pressed("f1"):
+			_open_user_directory()
 		
 
 

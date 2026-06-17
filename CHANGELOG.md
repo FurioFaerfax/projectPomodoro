@@ -12,6 +12,13 @@ This project adheres to [Semantic Versioning](https://semver.org/) and follows t
 
 ---
 
+##  [0.4.1] – 2025-0
+### Fixed
+- Escape cant close the app in webexport anymore
+
+
+---
+
 ##  [0.4.0] – 2025-06-15
 ### Fixed
 - Reposition the dialogs when windows are modified
