@@ -28,7 +28,7 @@ func get_sounds():
 	#print(sounds)
 
 func load_sounds(fileName):
-	var path = Settings.user_dir+Settings.sound_dir+fileName+sound_type
+	var path = Settings.USER_DIR+Settings.sound_dir+fileName+sound_type
 	var file = FileAccess.open(path, FileAccess.READ)
 	if file != null:
 		var _sound = AudioStreamOggVorbis.load_from_file(path)
@@ -37,7 +37,7 @@ func load_sounds(fileName):
 		return null
 
 func load_sounds_mp3(fileName):
-	var path = Settings.user_dir+Settings.sound_dir+fileName+sound_type
+	var path = Settings.USER_DIR+Settings.sound_dir+fileName+sound_type
 	var file = FileAccess.open(path, FileAccess.READ)
 	var sound := AudioStreamMP3.new()
 	#print(path," ",file," ", sound)
@@ -46,3 +46,7 @@ func load_sounds_mp3(fileName):
 		return sound
 	else:
 		return null
+
+
+func _on_sound_volume_value_changed(value: float) -> void:
+	volume_linear = value

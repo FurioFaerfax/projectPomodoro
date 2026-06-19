@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdby7233hxjii" path="res://assets/menu.svg" id="2_5sfjl"]
 [ext_resource type="Texture2D" uid="uid://bbc3opks7j3fk" path="res://assets/pomodoro/ring.svg" id="2_j287u"]
 [ext_resource type="Script" uid="uid://cvvusgaf6teii" path="res://scripts/pomodoro/menu_container.gd" id="2_l5cgh"]
+[ext_resource type="Script" uid="uid://dddlapo7yf4kq" path="res://scripts/tabs.gd" id="2_mflgo"]
 [ext_resource type="Texture2D" uid="uid://ci4bustjtko84" path="res://assets/pomodoro/play.svg" id="3_sqa0i"]
 [ext_resource type="Script" uid="uid://bdb13btb4j2am" path="res://scripts/pomodoro/time_visuals.gd" id="3_xsp7o"]
 [ext_resource type="Texture2D" uid="uid://ds8uca6sdk7qp" path="res://assets/pomodoro/pause.svg" id="4_j287u"]
@@ -15,7 +16,11 @@
 [ext_resource type="Script" uid="uid://dpo2qw4jmn7hq" path="res://scripts/pomodoro/timer.gd" id="10_vgks2"]
 [ext_resource type="PackedScene" uid="uid://djtc4uphb7mhr" path="res://scenes/todo.tscn" id="11_vgks2"]
 [ext_resource type="Script" uid="uid://bo7f2ywmaea71" path="res://scripts/audio/audio_visuals.gd" id="12_jrhyn"]
+[ext_resource type="Script" uid="uid://djaromxxsd1nc" path="res://scripts/audio/musicplayer.gd" id="12_ya6yc"]
 [ext_resource type="Script" uid="uid://dde5l0gpbwx27" path="res://scripts/audio/audio_controls.gd" id="13_log26"]
+[ext_resource type="Script" uid="uid://jtyes32mj4h7" path="res://scripts/audio_timer.gd" id="14_gt4lb"]
+[ext_resource type="Script" uid="uid://pr3we8pkcf2k" path="res://scenes/music_stream_player.gd" id="14_log26"]
+[ext_resource type="Texture2D" uid="uid://y1qtc0vmthew" path="res://assets/pomodoro/bar_1.svg" id="15_34frw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ui5n"]
 
@@ -64,6 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twpsu")
+dev_mode = true
 
 [node name="tabs" type="TabContainer" parent="." unique_id=1629774704]
 unique_name_in_owner = true
@@ -76,6 +82,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8ui5n")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_ccljq")
 current_tab = 2
+script = ExtResource("2_mflgo")
 
 [node name="pomodoro" type="TabBar" parent="tabs" unique_id=306337723]
 unique_name_in_owner = true
@@ -115,6 +122,7 @@ script = ExtResource("2_l5cgh")
 [node name="menu" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" unique_id=997916478]
 unique_name_in_owner = true
 modulate = Color(0.321569, 0.352941, 0.380392, 1)
+z_index = 2
 layout_mode = 0
 anchor_right = 0.107
 anchor_bottom = 0.924
@@ -136,10 +144,10 @@ visible = false
 top_level = true
 layout_mode = 1
 anchors_preset = -1
-offset_left = 12.0
-offset_top = 94.665
-offset_right = 167.0
-offset_bottom = 303.665
+offset_left = 12.065
+offset_top = 86.0
+offset_right = 167.065
+offset_bottom = 436.765
 color = Color(0.233925, 0.233925, 0.233925, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -149,9 +157,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 3.0
+offset_top = 5.173
 offset_right = -2.0
-offset_bottom = -1.0
+offset_bottom = -2.3520203
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -180,6 +188,33 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "undock todo"
+
+[node name="music" type="CheckButton" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1182294702]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "music"
+
+[node name="musicLabel" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=1582029741]
+layout_mode = 2
+text = "Music volume"
+
+[node name="musicVolume" type="HSlider" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=45154007]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="soundLabel" type="Label" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=506361753]
+layout_mode = 2
+text = "Sound volume"
+
+[node name="soundVolume" type="HSlider" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=357460701]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
 
 [node name="about" type="Button" parent="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries" unique_id=615000818]
 layout_mode = 2
@@ -342,6 +377,7 @@ text = "Test"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_f3p2p")
+script = ExtResource("12_ya6yc")
 metadata/_tab_index = 2
 
 [node name="audio_container" type="Control" parent="tabs/audioplayer" unique_id=1099423399]
@@ -370,7 +406,8 @@ custom_minimum_size = Vector2(0, 57.34)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="state_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/menu_container" unique_id=1081358235]
+[node name="audio_title_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/menu_container" unique_id=1081358235]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -384,7 +421,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
-text = "state"
+text = "Now Playing"
 
 [node name="audio_visuals" type="Control" parent="tabs/audioplayer/audio_container/audio_layout" unique_id=883219602]
 unique_name_in_owner = true
@@ -392,7 +429,8 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("12_jrhyn")
 
-[node name="time_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/audio_visuals" unique_id=302481136]
+[node name="audio_time_label" type="Label" parent="tabs/audioplayer/audio_container/audio_layout/audio_visuals" unique_id=302481136]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -415,14 +453,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -170.5
-offset_top = -170.5
-offset_right = 170.5
-offset_bottom = 170.5
+offset_left = -169.95999
+offset_top = 136.82501
+offset_right = 171.04001
+offset_bottom = 164.82501
 grow_horizontal = 2
 grow_vertical = 2
-min_value = 7.7
-value = 7.7
+texture_under = ExtResource("15_34frw")
+texture_progress = ExtResource("15_34frw")
 tint_under = Color(1, 1, 1, 0.203922)
 tint_progress = Color(0.317647, 1, 0.317647, 1)
 
@@ -477,23 +515,13 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_y3xxt")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_dylgi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7pvxh")
 
-[node name="round_label" type="Label" parent="tabs/audioplayer/audio_container" unique_id=1317039097]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -40.0
-offset_right = 74.0
-offset_bottom = -17.0
-grow_vertical = 0
-text = "rounds"
-
 [node name="audioTimer" type="Timer" parent="tabs/audioplayer/audio_container" unique_id=938168075]
 unique_name_in_owner = true
+script = ExtResource("14_gt4lb")
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="tabs/audioplayer/audio_container" unique_id=621253389]
 unique_name_in_owner = true
+script = ExtResource("14_log26")
 
 [node name="Timer" type="Timer" parent="." unique_id=509296190]
 unique_name_in_owner = true
@@ -506,6 +534,7 @@ script = ExtResource("4_sqa0i")
 
 [node name="time_settings" type="AcceptDialog" parent="." unique_id=72310790]
 unique_name_in_owner = true
+oversampling_override = 1.0
 title = "Set the duration"
 initial_position = 2
 size = Vector2i(232, 158)
@@ -553,8 +582,121 @@ layout_mode = 2
 text = "20"
 placeholder_text = "20"
 
+[node name="music_path_not_valid" type="ConfirmationDialog" parent="." unique_id=1826030203]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "ERROR: No music found"
+initial_position = 1
+size = Vector2i(299, 158)
+ok_button_text = "confirm"
+dialog_text = "No music was found in that location!
+
+Do you want to select again?"
+
+[node name="container" type="VBoxContainer" parent="music_path_not_valid" unique_id=1423614981]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 291.0
+offset_bottom = 109.0
+
+[node name="working_time" type="HBoxContainer" parent="music_path_not_valid/container" unique_id=1685435007]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path_not_valid/container/working_time" unique_id=1485021759]
+layout_mode = 2
+text = " woking time       "
+
+[node name="value" type="LineEdit" parent="music_path_not_valid/container/working_time" unique_id=1436797561]
+layout_mode = 2
+text = "25"
+placeholder_text = "25"
+
+[node name="mini_break" type="HBoxContainer" parent="music_path_not_valid/container" unique_id=380406884]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path_not_valid/container/mini_break" unique_id=1041772420]
+layout_mode = 2
+text = "mini break time "
+
+[node name="value" type="LineEdit" parent="music_path_not_valid/container/mini_break" unique_id=1163844619]
+layout_mode = 2
+text = "5"
+placeholder_text = "5"
+
+[node name="main_break" type="HBoxContainer" parent="music_path_not_valid/container" unique_id=1324500069]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path_not_valid/container/main_break" unique_id=1486528764]
+layout_mode = 2
+text = "main break time"
+
+[node name="value" type="LineEdit" parent="music_path_not_valid/container/main_break" unique_id=1988945823]
+layout_mode = 2
+text = "20"
+placeholder_text = "20"
+
+[node name="music_path" type="FileDialog" parent="." unique_id=1146262371]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Open the Directory containing your music files"
+initial_position = 4
+size = Vector2i(1287, 600)
+ok_button_text = "confirm"
+mode_overrides_title = false
+file_mode = 2
+access = 2
+use_native_dialog = true
+hidden_files_toggle_enabled = false
+folder_creation_enabled = false
+deleting_enabled = false
+
+[node name="container" type="VBoxContainer" parent="music_path" unique_id=982982112]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1279.0
+offset_bottom = 551.0
+
+[node name="working_time" type="HBoxContainer" parent="music_path/container" unique_id=142187716]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path/container/working_time" unique_id=1021810988]
+layout_mode = 2
+text = " woking time       "
+
+[node name="value" type="LineEdit" parent="music_path/container/working_time" unique_id=1774738644]
+layout_mode = 2
+text = "25"
+placeholder_text = "25"
+
+[node name="mini_break" type="HBoxContainer" parent="music_path/container" unique_id=2069647589]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path/container/mini_break" unique_id=34344563]
+layout_mode = 2
+text = "mini break time "
+
+[node name="value" type="LineEdit" parent="music_path/container/mini_break" unique_id=121470018]
+layout_mode = 2
+text = "5"
+placeholder_text = "5"
+
+[node name="main_break" type="HBoxContainer" parent="music_path/container" unique_id=2003892653]
+layout_mode = 2
+
+[node name="name" type="Label" parent="music_path/container/main_break" unique_id=843996500]
+layout_mode = 2
+text = "main break time"
+
+[node name="value" type="LineEdit" parent="music_path/container/main_break" unique_id=1306759121]
+layout_mode = 2
+text = "20"
+placeholder_text = "20"
+
 [node name="about_dialog" type="AcceptDialog" parent="." unique_id=953383299]
 unique_name_in_owner = true
+oversampling_override = 1.0
 title = "About"
 initial_position = 2
 size = Vector2i(400, 200)
@@ -585,6 +727,10 @@ script = ExtResource("9_3hfy5")
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/undock_todo" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" method="_on_undock_todo_pressed"]
 [connection signal="toggled" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/undock_todo" to="." method="_on_undock_todo_toggled"]
 [connection signal="toggled" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/undock_todo" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" method="_on_undock_todo_toggled"]
+[connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/music" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" method="_on_music_pressed"]
+[connection signal="toggled" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/music" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" method="_on_music_toggled"]
+[connection signal="value_changed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/musicVolume" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/soundVolume" to="audio" method="_on_sound_volume_value_changed"]
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/about" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container/menu/menu_bg/menu_entries/about" to="tabs/pomodoro/pomodoro_container/pomodoro_layout/menu_container" method="_on_about_pressed"]
 [connection signal="pressed" from="tabs/pomodoro/pomodoro_container/pomodoro_layout/timer_controls/Start" to="." method="_on_start_pressed"]
@@ -599,9 +745,16 @@ script = ExtResource("9_3hfy5")
 [connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioPause" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_pause_pressed"]
 [connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioStop" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_stop_pressed"]
 [connection signal="pressed" from="tabs/audioplayer/audio_container/audio_layout/audio_controls/audioSkip" to="tabs/audioplayer/audio_container/audio_layout/audio_controls" method="_on_skip_pressed"]
+[connection signal="timeout" from="tabs/audioplayer/audio_container/audioTimer" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_audio_timer_timeout"]
+[connection signal="finished" from="tabs/audioplayer/audio_container/MusicStreamPlayer" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_finished"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
 [connection signal="canceled" from="time_settings" to="." method="_on_accept_dialog_canceled"]
 [connection signal="confirmed" from="time_settings" to="." method="_on_accept_dialog_confirmed"]
+[connection signal="canceled" from="music_path_not_valid" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_path_not_valid_canceled"]
+[connection signal="confirmed" from="music_path_not_valid" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_path_not_valid_confirmed"]
+[connection signal="canceled" from="music_path" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_path_canceled"]
+[connection signal="confirmed" from="music_path" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_path_confirmed"]
+[connection signal="dir_selected" from="music_path" to="tabs/audioplayer/audio_container/MusicStreamPlayer" method="_on_music_path_dir_selected"]
 [connection signal="meta_clicked" from="about_dialog/about_label" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="meta_clicked" from="about_dialog/about_label" to="." method="_on_about_label_meta_clicked"]
 [connection signal="close_requested" from="todo_window" to="." method="_on_todo_window_close_requested"]

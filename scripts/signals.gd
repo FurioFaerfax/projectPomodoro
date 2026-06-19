@@ -2,7 +2,7 @@ extends Node
 signal todo_entry_checked(boo)
 signal todo_deleted(was_checked)
 signal move_entry(dir, entry)
-
+signal set_music_active_state(boo)
 
 func _ready() -> void:
 	todo_entry_checked.connect(_into_void)

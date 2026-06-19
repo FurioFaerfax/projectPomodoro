@@ -34,6 +34,10 @@ var initial_todo_pos :Vector2i = Vector2()
 @export var web_export := false:
 	set(val):
 		Settings.web_export = val
+		
+@export var dev_mode := false:
+	set(val):
+		Settings.dev_mode = val
 
 func _ready() -> void:
 	await RenderingServer.frame_post_draw
@@ -86,9 +90,11 @@ func undocking_todo():
 		initial_todo_pos = todo_window.position
 		initial_pomodoro_pos = get_screen_position()
 		
-		pomodoro_container.reparent(tabs.get_parent())
+		#pomodoro_container.reparent(tabs.get_parent())
 		pomodoro_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		tabs.hide()
+		#tabs.hide()
+		#tabs.get_tab_bar()
+		tabs.set_tab_disabled(todo.get_index(), true)
 		menu_bg.position.y = menu.get_global_transform()[2].y+menu.icon.get_height()+menu_offset
 		
 		todo_container.reparent(todo_window)
@@ -99,8 +105,9 @@ func undocking_todo():
 func docking_todo():
 	if initial_todo_pos == todo_window.position and initial_pomodoro_pos == get_screen_position():#just if both windows havent move, reset the main windows position
 		get_window().position.x += int(todo_window.size.x/2.0)
-	tabs.show()
-	pomodoro_container.reparent(pomodoro)
+	
+	tabs.set_tab_disabled(todo.get_index(), false)
+	#pomodoro_container.reparent(pomodoro)
 	pomodoro_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	menu_bg.position.y = menu.get_global_transform()[2].y+menu.icon.get_height()+menu_offset
 	

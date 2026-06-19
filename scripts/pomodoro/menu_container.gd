@@ -6,6 +6,7 @@ extends Control
 @onready var audio: AudioStreamPlayer = %audio
 @onready var about_dialog: AcceptDialog = %about_dialog
 @onready var menu_bg: ColorRect = %menu_bg
+@onready var music: CheckButton = %music
 
 const MENU_SVG = preload("res://assets/menu.svg")
 const MENU_OPEN_SVG = preload("res://assets/menu_open.svg")
@@ -15,11 +16,16 @@ var sounds := true
 var menu_shown := false
 #
 func _ready() -> void:
+	Signals.set_music_active_state.connect(music_setting)
+	Signals.set_music_active_state.emit(Settings.settings["music_enabled"])
 	if !Settings.web_export:
 		about_dialog.initial_position =Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 		time_settings.initial_position =Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 		reposition_dialogs()
-	
+
+func music_setting(boo):
+	music.set_pressed_no_signal(boo)
+
 func reposition_dialogs():
 	var window_center  = get_window().position as Vector2i + get_window().size/2
 	about_dialog.position = window_center - about_dialog.size/2
@@ -81,3 +87,12 @@ func _on_sounds_toggled(toggled_on: bool) -> void:
 		audio.volume_db = -100.0
 	else:
 		audio.volume_db = 0.0
+
+
+func _on_music_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_music_toggled(toggled_on: bool) -> void:
+	Settings.change_setting("music_enabled", toggled_on)
+	Signals.set_music_active_state.emit(toggled_on)

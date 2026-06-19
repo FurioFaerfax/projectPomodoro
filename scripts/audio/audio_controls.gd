@@ -11,48 +11,43 @@ extends HBoxContainer
 var paused := false
 
 func _on_start_pressed() -> void:
+	if paused:
+		audio.startTimerStop(true, false)
+		audio.stream_paused = false
+		paused = false
+	else:
+		audio.startTimerStop(true, false)
+		audio.play()
 	start.hide()
 	pause.show()
-	if !paused:
-		audio.stop()
-		match timer.state:
-			timer.STATES.WORK:
-				audio.set_sound("work_start")
-			timer.STATES.MINI_BREAK:
-				audio.set_sound("break_start")
-			timer.STATES.MAIN_BREAK:
-				audio.set_sound("break_start")
-			_:
-				pass
-		audio.play(0.0)
 	
 	if timer.is_stopped():
 		if !paused:
-			timer.setting_up_timer(true)
+			pass
 		else:
 			timer.start()
 
 #Curently resets the current round
 func _on_stop_pressed() -> void:
+	audio.stop()
 	start.show()
 	pause.hide()
+	audio.startTimerStop(false, true)
 	if paused:
 		paused = false
-	timer.stop()
-	timer.time_in_seconds_left = timer.time_in_seconds
-	audio_visuals.update_visuals()
-	audio_progress_bar.value = audio_progress_bar.max_value
 
 func _on_pause_pressed() -> void:
 	start.show()
 	pause.hide()
 	paused = true
-	timer.stop()
+	audio.stream_paused = true
+	audio.startTimerStop(false, false)
+	#timer.stop()
 
 func _on_skip_pressed() -> void:#Currently no sound when skipping
 	_on_stop_pressed()
-	if timer.autoplay:
-		start.hide()
-		pause.show()
-	
-	timer.choose_next_time()
+	audio.startTimerStop(true, true)
+	audio.get_next_track()
+	audio.play()
+	start.hide()
+	pause.show()
